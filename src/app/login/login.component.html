@@ -1,0 +1,45 @@
+
+<img width="132" height="57"  src="https://uicookies.com/wp-content/uploads/2019/01/uicookies-logo.png" alt="31 Bootstrap Animation Examples To Make A Meaningful Design" class="lazyloaded" data-ll-status="loaded" style="background-image: radial-gradient(black, transparent)">
+<br>
+
+<div style="min-width: 100%;min-height: 500px;background-image: url('../assets/wood.jpg');">
+    
+    <br>
+<div class="container layout" style="border-bottom: 11px
+ solid lightseagreen;">
+    <h3>User login / Sign In</h3>
+    <form #loginform= "ngForm" (ngSubmit)="loginUser()">
+        {{loginform.form.valid}}
+        <small class="text-danger">{{msg}}</small>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" placeholder="Enter email" name="email" [(ngModel)]="user.emailId" required pattern="^\w+@[a-zA-Z]+?\.[a-zA-Z]{2,3}$" #email="ngModel"
+        [class.is-invalid]="email.invalid && email.touched"
+        >
+        <!--<small class="text-danger" [class.d-none]="email.invalid || email.untouched">EmailId is required field</small>-->
+
+        <div *ngIf="email.errors && (email.invalid && email.touched)">
+            <small class="text-danger" *ngIf="email.errors.required">Email Id is required field</small>
+            <small class="text-danger" *ngIf="email.errors.pattern">Enter the valid value emailID</small>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control"  placeholder="Enter password" name="password" [(ngModel)]="user.password" required #password="ngModel"
+        [class.is-invalid]="password.invalid && password.touched"
+        >
+        <small class="text-danger" [class.d-none]="password.invalid || password.untouched">Password is required field</small>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+      <button [disabled]="loginform.form.invalid" type="submit" class="btn btn-info">Login</button>
+      
+    </form>
+    <form>
+        <small style="display: flex;justify-content: right;cursor: pointer;" [routerLink]="['/registration']">New user ? Register here</small>
+    </form>
+    <!--<small style="display: flex;justify-content: right;" (click)="goToRegistration()">New user ? Register here</small>-->
+  </div>
+  </div>
